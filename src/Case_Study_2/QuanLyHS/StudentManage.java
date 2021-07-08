@@ -112,6 +112,56 @@ public class StudentManage {
         }
     }
 
+    public static void searchHS() {
+        System.out.println("----Menu----");
+        System.out.println("1. Tìm kiếm  học sinh theo tên ");
+        System.out.println("2. Tìm kiếm nhiều học sinh cùng Họ hoặc Tên hoặc ký tự liên quan");
+        System.out.println("0. Thoát");
+        int choice = Integer.parseInt(sc.nextLine());
+        if (choice == 0) {
+            return;
+        }
+        switch (choice) {
+            case 1:
+                System.out.println("Nhập vào tên :");
+                String ten = sc.nextLine();
+                boolean check = false;
+                for (Student nv : students) {
+                    if (nv.getHoTen().equals(ten)) {
+                        System.out.println(nv);
+                        check = true;
+                        break;
+                    }
+                }
+                if (check) {
+                    return;
+                } else {
+                    System.err.println("Không có kết quả");
+                }
+                break;
+            case 2:
+                System.out.println("Nhập vào tên :");
+                String name = sc.nextLine();
+                boolean check2 = false;
+                for (Student nv : students) {
+                    if (nv.getHoTen().contains(name)) {
+                        System.out.println(nv);
+                        check2 = true;
+                        break;
+                    }
+                }
+                if (check2) {
+                    return;
+                } else {
+                    System.err.println("Không có kết quả");
+                }
+                break;
+            default:
+                System.err.println("Vui lòng nhập đúng");
+        }
+
+    }
+
     private static String getHoTen() {
         System.out.println("Nhập họ & tên");
         return sc.nextLine();
@@ -270,43 +320,6 @@ public class StudentManage {
         });
     }
 
-    public static void searchHS() {
-        System.out.println("----Menu----");
-        System.out.println("1. Tìm kiếm 1 học sinh");
-        System.out.println("2. Tìm kiếm nhiều học sinh cùng Họ hoặc Tên hoặc ký tự liên quan");
-        System.out.println("0. Thoát");
-        int choice = Integer.parseInt(sc.nextLine());
-        if (choice == 0) {
-            return;
-        }
-        switch (choice) {
-            case 1:
-                System.out.println("Nhập vào tên :");
-                String ten = sc.nextLine();
-                for (Student nv : students) {
-                    if (nv.getHoTen().equals(ten)) {
-                        System.out.println(nv);
-                    } else {
-                        System.err.println("Không có kết quả");
-                    }
-                }
-                break;
-            case 2:
-                System.out.println("Nhập vào tên :");
-                String name = sc.nextLine();
-                for (Student student : students) {
-                    if (student.getHoTen().contains(name)) {
-                        System.out.println(student);
-                    } else {
-                        System.err.println("Không có kết quả");
-                    }
-                }
-                break;
-            default:
-                System.err.println("Vui lòng nhập đúng");
-        }
-
-    }
 
     public static void readFile() {
         students = IOOFile.readFile();
