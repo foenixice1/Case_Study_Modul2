@@ -280,6 +280,8 @@ public class StudentManage {
                 for (Student nv : hocSinhs) {
                     if (nv.getHoTen().equals(ten)) {
                         System.out.println(nv);
+                    }else {
+                        System.err.println("Không có kết quả");
                     }
                 }
                 break;
@@ -289,6 +291,8 @@ public class StudentManage {
                 for (Student student : hocSinhs) {
                     if (student.getHoTen().contains(name)) {
                         System.out.println(student);
+                    }else {
+                        System.err.println("Không có kết quả");
                     }
                 }
                 break;
