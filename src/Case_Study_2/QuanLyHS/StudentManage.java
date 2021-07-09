@@ -113,8 +113,19 @@ public class StudentManage {
     }
 
     private static String getHoTen() {
-        System.out.println("Nhập họ & tên");
-        return sc.nextLine();
+        while (true) {
+            try {
+                System.out.println("Nhập họ & tên");
+                String name = sc.nextLine();
+                if (NameRegex.validate(name)){
+                    return name;
+                }else {
+                  throw new Exception();
+                }
+            }catch (Exception e) {
+                System.err.println("Tên không được là số");
+            }
+        }
     }
 
     private static String getDoTuoi() {
@@ -277,10 +288,12 @@ public class StudentManage {
     }
 
     public static void searchHS() {
-        System.out.println("----Menu----");
-        System.out.println("1. Tìm kiếm  học sinh theo tên ");
-        System.out.println("2. Tìm kiếm nhiều học sinh cùng Họ hoặc Tên hoặc ký tự liên quan");
-        System.out.println("0. Thoát");
+        System.out.println("|==================================================================|");
+        System.out.println("|                       ----Menu----                               |");
+        System.out.println("| 1. Tìm kiếm  học sinh theo ID                                    |");
+        System.out.println("| 2. Tìm kiếm nhiều học sinh cùng Họ hoặc Tên hoặc ký tự liên quan |");
+        System.out.println("| 0. Thoát                                                         |");
+        System.out.println("|==================================================================|");
         int choice = 99;
         try {
             choice = Integer.parseInt(sc.nextLine());
@@ -291,11 +304,11 @@ public class StudentManage {
         }
         switch (choice) {
             case 1:
-                System.out.println("Nhập vào tên :");
+                System.out.println("Nhập vào ID :");
                 String ten = sc.nextLine();
                 boolean check = false;
                 for (Student nv : students) {
-                    if (nv.getHoTen().equals(ten)) {
+                    if (nv.getId().equals(ten)) {
                         System.out.println(nv);
                         check = true;
                         break;

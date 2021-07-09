@@ -25,8 +25,9 @@ public class IOOFile {
     }
 
     public static void writeUserFile() {
+        BufferedWriter bufferedWriter = null;
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("User.txt"));
+            bufferedWriter = new BufferedWriter(new FileWriter("User.txt"));
             String somthing = "User,Password";
             bufferedWriter.write(somthing);
             for (User user : Login.userList) {
@@ -35,6 +36,12 @@ public class IOOFile {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                bufferedWriter.close();
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -63,7 +70,7 @@ public class IOOFile {
                 list.add(new User(arr[0], arr[1]));
             }
         } catch (Exception e) {
-            System.err.println("Người dùng không tồn tại");
+//            System.err.println("Người dùng không tồn tại");
 
         }
         return list;

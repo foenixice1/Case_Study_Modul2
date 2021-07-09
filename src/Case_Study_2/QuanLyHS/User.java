@@ -25,6 +25,6 @@ public class User {
         this.password = password;
     }
     public String display() {
-        return "Tài Khoản :" + username + "Mật khẩu : " + password;
+        return username + "," + password;
     }
 }
