@@ -1,6 +1,7 @@
 package Case_Study_2.QuanLyHS;
 
 import Case_Study_2.IOOFile.IOOFile;
+import Case_Study_2.Regex.UserPassRegex;
 
 import java.util.List;
 import java.util.Scanner;
@@ -15,10 +16,15 @@ public class Login {
             System.out.println();
             System.out.println("--CHÀO MỪNG BẠN ĐẾN VỚI CHƯƠNG TRÌNH QUẢN LÝ HỌC SINH--");
             System.out.println("1. Đăng nhập");
-            System.out.println("2. Đăng ký người");
+            System.out.println("2. Đăng ký mới");
             System.out.println("0. Thoát");
             System.out.println("Mời bạn chọn");
-            int choice = Integer.parseInt(sc.nextLine());
+            int choice = 99;
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+
+            } catch (Exception e) {
+            }
             switch (choice) {
                 case 1:
                     System.out.println("Tài Khoản :");
@@ -42,9 +48,8 @@ public class Login {
                 case 2:
                     System.out.println("Đăng ký người dùng mới");
                     String user = getUserName();
-                    System.out.println("Mật khẩu");
-                    String pass = sc.nextLine();
-                    userList.add(new User(user,pass));
+                    String pass = getPassword();
+                    userList.add(new User(user, pass));
                     IOOFile.writeUserFile();
                     break;
                 case 0:
@@ -54,19 +59,40 @@ public class Login {
             }
         }
     }
+
     private static String getUserName() {
         while (true) {
-            System.out.println("Tài khoản");
-            String username = sc.nextLine();
-            boolean exit = false;
-            for (User user : userList) {
-                if (user.getUsername().equalsIgnoreCase(username)){
-                    System.err.println("Tài khoản đã tồn tại");
-                    exit = true;
-                }
+            try{
+                System.out.println("Tài khoản");
+                String username = sc.nextLine();
+                if (UserPassRegex.validate(username)) {
+                    boolean exit = false;
+                    for (User user : userList) {
+                        if (user.getUsername().equalsIgnoreCase(username)) {
+                            System.err.println("Tài khoản đã tồn tại");
+                            exit = true;
+                        }
+                    }
+                    if (!exit) {
+                        return username;
+                    }
+                }else throw new Exception();
+            }catch (Exception e) {
+                System.err.println("Tài khoản có ít nhất 1 ký tự");
             }
-            if (!exit) {
-                return username;
+
+        }
+    }
+    private static String getPassword() {
+        while (true) {
+            try {
+                System.out.println("Mật khẩu");
+                String password = sc.nextLine();
+                if (UserPassRegex.validate(password)) {
+                    return password;
+                }else throw new Exception();
+            }catch (Exception e) {
+                System.err.println("Mật khẩu ít nhất phải có 1 ký tư");
             }
         }
     }

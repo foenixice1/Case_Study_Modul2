@@ -18,7 +18,12 @@ public class Menu {
             System.out.println("8. Đọc học sinh vào File");
             System.out.println("0. Thoát");
             System.out.println("Mời bạn chọn");
-            int choice = Integer.parseInt(sc.nextLine());
+            int choice = 99;
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+
+            } catch (Exception e) {
+            }
             if (choice == 0) {
                 return;
             }
