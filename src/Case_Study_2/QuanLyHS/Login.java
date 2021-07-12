@@ -33,7 +33,7 @@ public class Login {
                         System.out.println("|===================================|");
                         System.out.println("| 1. Đăng nhập bằng tài khoản ADMIN |");
                         System.out.println("| 2. Đăng nhập bằng tài khoản User  |");
-                        System.out.println("| 0. Thoát                          |");
+                        System.out.println("| 3. Thoát                          |");
                         System.out.println("| Mời bạn chọn                      |");
                         System.out.println("|===================================|");
                         int choice1 = 99;
@@ -42,8 +42,8 @@ public class Login {
 
                         } catch (Exception e) {
                         }
-                        if (choice1 == 0) {
-                            return;
+                        if (choice1 == 3) {
+                            login();
                         }
                         switch (choice1) {
                             case 1:
@@ -52,8 +52,6 @@ public class Login {
                             case 2:
                                 logInUser();
                                 break;
-                            case 0:
-                                System.exit(0);
                             default:
                                 System.err.println("Vui lòng chọn đúng");
                         }
@@ -67,6 +65,7 @@ public class Login {
                     break;
                 case 0:
                     System.exit(0);
+
                 default:
                     System.err.println("Vui lòng nhập đúng");
             }
@@ -101,6 +100,7 @@ public class Login {
                             System.out.println("Xin chào " + user.getUsername());
                             login = true;
                             loginUser = user;
+                            StudentManage.readFile();
                         }
                     }
                     if (login) {
@@ -141,6 +141,7 @@ public class Login {
                     if (username.equalsIgnoreCase("admin") && password.equals("admin")) {
                         System.out.println("Xin chào " + username);
                         login = true;
+                        StudentManage.readFile();
                     }
                     if (login) {
                         Menu.menuAdmin();

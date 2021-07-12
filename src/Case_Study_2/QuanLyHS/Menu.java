@@ -3,7 +3,8 @@ package Case_Study_2.QuanLyHS;
 import java.util.Scanner;
 
 public class Menu {
-    static  Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
+
     public static void menuAdmin() {
         while (true) {
             System.out.println("|==========================================|");
@@ -59,13 +60,14 @@ public class Menu {
         }
 
     }
-    public static void menuUser(){
+
+    public static void menuUser() {
         while (true) {
             System.out.println("|==========================================|");
             System.out.println("|   ---CHÀO MỪNG BẠN ĐẾN VỚI CODEGYM---    |");
             System.out.println("| 1. Hiển thị thông tin học sinh           |");
             System.out.println("| 2. Tìm kiếm học sinh                     |");
-            System.out.println("| 3. Sắp xếp học sinh                     |");
+            System.out.println("| 3. Sắp xếp học sinh                      |");
             System.out.println("| 4. Ghi học sinh vào File                 |");
             System.out.println("| 5. Đọc học sinh vào File                 |");
             System.out.println("| 0. Thoát                                 |");

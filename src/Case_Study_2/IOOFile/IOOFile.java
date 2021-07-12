@@ -70,8 +70,6 @@ public class IOOFile {
                 list.add(new User(arr[0], arr[1]));
             }
         } catch (Exception e) {
-//            System.err.println("Người dùng không tồn tại");
-
         }
         return list;
     }

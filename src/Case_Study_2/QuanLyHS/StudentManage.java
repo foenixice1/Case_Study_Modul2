@@ -81,7 +81,7 @@ public class StudentManage {
                     }
                 } else throw new Exception();
             } catch (Exception e) {
-                System.err.println("Mã học sinh phải bắt đầu 'HS' và theo sau là 6 số");
+                System.err.println("Mã học sinh phải bắt đầu 'HS' và theo sau là 6 số và không để trống");
             }
         }
 
@@ -117,13 +117,13 @@ public class StudentManage {
             try {
                 System.out.println("Nhập họ & tên");
                 String name = sc.nextLine();
-                if (NameRegex.validate(name)){
+                if (NameRegex.validate(name)) {
                     return name;
-                }else {
-                  throw new Exception();
+                } else {
+                    throw new Exception();
                 }
-            }catch (Exception e) {
-                System.err.println("Tên không được là số");
+            } catch (Exception e) {
+                System.err.println("Tên không được là số và không được để trống");
             }
         }
     }
